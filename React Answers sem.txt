@@ -1,0 +1,249 @@
+1)
+Project Question
+Greeting Message
+1.Create a Greeting Component
+Inside the `src/components	 directory, create a new file named `Greeting.jsx`.
+A heading (`<h2>`) with the content "Hello, John!".
+A paragraph (`<p>`) with the content having current formatted date "Welcome to our website. Today is Sunday, December 3, 2023".
+
+2.Create an App Component
+In the root folder, open the src directory and find the `App.jsx` file.
+Edit the App.jsx file to import the Greeting component and include it within the App component.
+
+3.Install Dependencies and Start the App
+Open your terminal and navigate to the 'reactapp` directory and  run `npm install`. This installs the necessary dependencies for your React app. After the installation is complete, run `npm start`.
+ View the output by clicking on above provided link 'port: 8081'
+
+Greeting.jsx
+import React from 'react';
+
+const Greeting = () => {
+  const userName = "John";
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  return (
+    <div>
+      <h2>Hello, {userName}!</h2>
+      <p>Welcome to our website. Today is {formattedDate}.</p>
+    </div>
+  );
+};
+
+export default Greeting;
+
+App.jsx
+import React from 'react';
+import Greeting from './components/Greeting';
+
+const App = () => {
+  return (
+    <div>
+      <Greeting />
+    </div>
+  );
+};
+
+export default App;
+
+
+2)
+Counter Application using State
+1.Create the Counter Component
+Inside the `src/components` folder, create a new file named `Counter.jsx`. Add the necessary code for the Counter component that renders the count in paragraph (`<p>`) with the content "Count: 0"  and provide buttons using (`<button>`) tag named `Increment` and `Decrement` for incrementing and decrementing the count value. 
+Manage the state by using `useState` hook.
+2.Navigate to the React App Folder
+Open your terminal and change your working directory to the React app folder named `reactapp`
+3.Install Dependencies
+Run the following command to install the necessary dependencies:`npm install`
+4.Start the Development Server
+After the installation is complete, start the React development server with the following command:`npm start`
+View the output by clicking on the above link `port: 8081`
+
+src/components/Counter.jsx
+import React, { useState } from 'react';
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount(count + 1);
+  const decrement = () => setCount(count - 1);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+};
+
+export default Counter;
+
+App.js
+import React from 'react';
+import Counter from './components/Counter';
+
+const App = () => (
+  <div className="App">
+    <Counter />
+  </div>
+);
+export default App;
+
+
+5)
+Card Component with Material-UI
+1.Create the CustomCard Component
+Create a new file named `CustomCard.jsx` inside the "src/components" directory. 
+In your  file, import the required dependencies:
+Import  Button, Card, CardActions, CardContent, CardMedia, and Typography from '@mui/material'.
+Import the 'tree.jpg' image.
+Define the CustomCard component structure:
+Create a functional component named CustomCard.
+Within CustomCard, use the Card component to structure the card layout.
+Include a CardMedia component for displaying the image, referencing 'tree.jpg'.
+Add CardContent with Typography for the card's title as "Nature" and description as "In the embrace of nature, the symphony of chirping birds and the gentle caress of a breeze paint a serene canvas of tranquility."
+Include CardActions with two Buttons: one for "Share" and the other for "Learn More".
+Ensure the 'tree.jpg' image is in the `src/assets/images/` directory.
+2.Navigate to the React App Folder
+Open your terminal and change your working directory to the React app folder named `reactapp`
+3.Install Dependencies
+Run the following command to install the necessary dependencies: `npm install`
+4.Start the Development Server
+After the installation is complete, start the React development server with the following command:`npm start`
+View the Output by clicking on above link `port: 8081`
+
+src/components/CustomCard.jsx
+import React from 'react';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
+import treeImage from '../assets/images/tree.jpg'; // adjust this path if necessary
+
+const CustomCard = () => {
+  return (
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={treeImage}
+        alt="Tree"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Nature
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          In the embrace of nature, the symphony of chirping birds and the gentle caress of a breeze paint a serene canvas of tranquility.
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
+  );
+};
+
+export default CustomCard;
+
+src/App.jsx
+import React from 'react';
+import CustomCard from './components/CustomCard';
+
+const App = () => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
+      <CustomCard />
+    </div>
+  );
+};
+
+export default App;
+
+7)
+Login Form using useRef
+1.Create the Login Form Component
+Inside the `src/components` folder, create a new file named `Form.jsx` and function name as "LoginForm".
+Two refs are initialized using the useRef hook:
+emailInputRef for the email input field.
+passwordInputRef for the password input field.
+Form Submission Handling:
+	Define the handleSubmit function that is triggered when the form is submitted.
+	Prevent the default form submission behavior using event.preventDefault().
+	Access the input values using the refs to create a formData object.
+	Log the formData object to the console.
+	Clear the input fields and focus on the email input field.
+HTML Structure:
+	The form contains two input fields and a submit button.
+	Each input field has a corresponding label, and the htmlFor attribute of the label is associated with the id of the input field.
+2.Navigate to the React App Folder
+Open your terminal and change your working directory to the React app folder named `reactapp`
+3.Install Dependencies
+Run the following command to install the necessary dependencies: `npm install`
+4.Start the Development Server
+After the installation is complete, start the React development server with the following command:`npm start`
+View the Output by clicking on above link `port: 8081`
+
+src/components/Form.jsx:
+import React, { useRef } from 'react';
+
+const LoginForm = () => {
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = {
+      email: emailInputRef.current.value,
+      password: passwordInputRef.current.value
+    };
+
+    console.log(formData);
+
+    // Clear input fields
+    emailInputRef.current.value = '';
+    passwordInputRef.current.value = '';
+    // Set focus back to email input
+    emailInputRef.current.focus();
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" ref={emailInputRef} required />
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input type="password" id="password" ref={passwordInputRef} required />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  );
+};
+
+export default LoginForm;
+
+src/App.jsx:
+import React from 'react';
+import LoginForm from './components/Form';
+
+const App = () => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
+      <LoginForm />
+    </div>
+  );
+};
+
+export default App;
+
+
+
+
